@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Backend service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mynaga-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./mynaga.db
+      - ENVIRONMENT=production
+      - DEBUG=false
+    volumes:
+      - ./backend:/app
+      - ./backend/mynaga.db:/app/mynaga.db
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    networks:
+      - mynaga-network
+
+  # Frontend service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mynaga-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:8000/api
+    networks:
+      - mynaga-network
+
+networks:
+  mynaga-network:
+    driver: bridge
