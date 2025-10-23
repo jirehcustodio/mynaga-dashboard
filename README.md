@@ -1,9 +1,33 @@
 # mynaga-dashboard
 MyNaga App Dashboard and Sorting Website
 
-## Setup
+## Installation
 
-This repository is already configured with a remote pointing to GitHub. The repository is set up and ready to use.
+1. Clone the repository:
+```bash
+git clone https://github.com/jirehcustodio/mynaga-dashboard.git
+cd mynaga-dashboard
+```
+
+2. Create and activate a virtual environment (recommended):
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+Run the dashboard application:
+```bash
+python app.py
+```
+
+## Development
 
 ### Repository Setup
 
